@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '管理系统',
+  title: '学生端',
 
   /**
    * @type {boolean} true | false

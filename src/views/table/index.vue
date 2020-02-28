@@ -8,29 +8,19 @@
       fit
       highlight-current-row
     >
-      <el-table-column align="center" label="工号" width="220">
+      <el-table-column align="center" label="课程编号" width="95">
         <template slot-scope="scope">
-          {{ scope.row.workId }}
+          {{ scope.row.courseId }}
         </template>
       </el-table-column>
-      <el-table-column align="center" label="姓名" width="220">
+      <el-table-column label="课程" width="220" align="center">
         <template slot-scope="scope">
-          {{ scope.row.teacherName }}
-        </template>
-      </el-table-column>
-      <el-table-column label="职称" width="220" align="center">
-        <template slot-scope="scope">
-          <p>{{ scope.row.professional.professionalTitle }}</p>
-        </template>
-      </el-table-column>
-      <el-table-column label="二级学院" width="220" align="center">
-        <template slot-scope="scope">
-          <p>{{ scope.row.department.departmentName }}</p>
+          <p>{{ scope.row.courseName }}</p>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="220" align="center">
         <template slot-scope="scope">
-          <el-button v-model="direction" type="primary" @click="evauationTeacher(scope.row.workId)">评价</el-button>
+          <el-button v-model="direction" type="primary" @click="evauationCourse(scope.row.courseId, scope.row.termId)">评价</el-button>
         </template>
       </el-table-column>
       <!-- department -->
@@ -84,13 +74,15 @@ export default {
   },
   data() {
     return {
+      // 课程数据
       list: null,
       listLoading: true,
       drawer: false,
       direction: 'rtl',
+      // kpi
       kpiList: null,
-      result: null,
-      currentWorkId: null,
+      // 当前课程ID
+      currentCourseId: null,
       form: {
         kpi: []
       }
@@ -104,12 +96,13 @@ export default {
     this.fetchKpi()
   },
   methods: {
-    evauationTeacher(workId) {
+    evauationCourse(courseId, termId) {
       this.drawer = true
-      this.workId = workId
+      this.currentCourseId = courseId
+      this.termId = termId
     },
     sumbitEvaluation() {
-      const teacherEvaluation = {}
+      const courseEvaluation = {}
       const lists = []
       // this.form.kpi;
       if (this.form.kpi < this.kpiList.length) {
@@ -120,7 +113,7 @@ export default {
       for (let i = 0; i < this.form.kpi.length; i++) {
         const temp = {}
         temp.kid = this.kpiList[i].thirdKpiId
-        temp.score = this.form.kpi[i]
+        temp.score = Number(this.form.kpi[i])
         if (temp.score === undefined || temp.score === null) {
           flag = true
           break
@@ -131,9 +124,11 @@ export default {
         this.$message.error('未完成')
         return
       } else {
-        teacherEvaluation.workId = this.workId
-        teacherEvaluation.secondKpiList = lists
-        sendEvaluationData(teacherEvaluation).then(response => {
+        courseEvaluation.courseId = this.currentCourseId
+        courseEvaluation.termId = this.termId
+        courseEvaluation.kpiScoreList = lists
+        console.log(courseEvaluation)  
+        sendEvaluationData(courseEvaluation).then(response => {
           if (response.code === 200) {
             this.$message({
               message: '评价成功',

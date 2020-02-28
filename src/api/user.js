@@ -6,28 +6,26 @@ import request from '@/utils/request'
  */
 export function login(data) {
   const param = new URLSearchParams()
-  param.append('workId', data.workId)
+  param.append('studentId', data.studentId)
   param.append('password', data.password)
   return request({
-    url: 'http://localhost:8080/service/auth/teacher',
+    url: 'http://localhost:8080/service/auth/student',
     method: 'post',
     data: param,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
   })
 }
 
-export function getInfo(token) {
+export function getInfo() {
   return request({
-    url: 'http://localhost:8080/service/auth/teacherinfo',
-    method: 'get',
-    headers: { 'Authorization': token }
+    url: 'http://localhost:8080/service/auth/studentinfo',
+    method: 'get'
   })
 }
 
-export function logout(token) {
+export function logout() {
   return request({
-    url: 'http://localhost:8080/service/auth/logout/teacher',
-    method: 'get',
-    headers: { 'Authorization': token }
+    url: 'http://localhost:8080/service/auth/logout/student',
+    method: 'get'
   })
 }

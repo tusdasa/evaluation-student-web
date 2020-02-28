@@ -42,10 +42,10 @@ export default {
     },
     nameFiter(name) {
       if (name.length <= 3) {
-        return name[0] + '老师'
+        return name[0] + '同学'
       }
       if (name.length === 4) {
-        return name[0] + name[1] + '老师'
+        return name[0] + name[1] + '同学'
       }
       if (name > 4) {
         return name

@@ -11,10 +11,10 @@
           <svg-icon icon-class="user" />
         </span>
         <el-input
-          ref="workId"
-          v-model="loginForm.workId"
-          placeholder="workId"
-          name="workId"
+          ref="studentId"
+          v-model="loginForm.studentId"
+          placeholder="学号"
+          name="studentId"
           type="text"
           tabindex="1"
           auto-complete="on"
@@ -30,7 +30,7 @@
           ref="password"
           v-model="loginForm.password"
           :type="passwordType"
-          placeholder="Password"
+          placeholder="密码"
           name="password"
           tabindex="2"
           auto-complete="on"
@@ -59,7 +59,7 @@ export default {
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
-        callback(new Error('请输入您的工号'))
+        callback(new Error('请输入您的学号'))
       } else {
         callback()
       }
@@ -73,11 +73,11 @@ export default {
     }
     return {
       loginForm: {
-        workId: '1000000001',
-        password: '12345678'
+        studentId: '',
+        password: ''
       },
       loginRules: {
-        workId: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        studentId: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
