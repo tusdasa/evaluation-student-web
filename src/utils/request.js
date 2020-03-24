@@ -6,7 +6,7 @@ import { getToken } from '@/utils/auth'
 // create an axios instance
 const service = axios.create({
   // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  // baseURL: 'http://localhost:8080/service/',
+  baseURL: 'http://localhost/',
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 50000 // request timeout
 })
@@ -45,7 +45,6 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    console.log(JSON.stringify(response))
     if (res.code === 401) {
       MessageBox.confirm('提示', res.message, {
         confirmButtonText: '重新输入',

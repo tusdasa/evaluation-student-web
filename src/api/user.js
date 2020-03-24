@@ -9,7 +9,7 @@ export function login(data) {
   param.append('studentId', data.studentId)
   param.append('password', data.password)
   return request({
-    url: 'http://localhost:8080/service/auth/student',
+    url: 'auth/student',
     method: 'post',
     data: param,
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -18,14 +18,14 @@ export function login(data) {
 
 export function getInfo() {
   return request({
-    url: 'http://localhost:8080/service/auth/studentinfo',
+    url: 'auth/studentinfo',
     method: 'get'
   })
 }
 
 export function logout() {
   return request({
-    url: 'http://localhost:8080/service/auth/logout/student',
+    url: 'auth/logout/student',
     method: 'get'
   })
 }

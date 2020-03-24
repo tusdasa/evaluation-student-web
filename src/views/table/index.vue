@@ -127,7 +127,6 @@ export default {
         courseEvaluation.courseId = this.currentCourseId
         courseEvaluation.termId = this.termId
         courseEvaluation.kpiScoreList = lists
-        console.log(courseEvaluation)  
         sendEvaluationData(courseEvaluation).then(response => {
           if (response.code === 200) {
             this.$message({
