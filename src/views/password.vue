@@ -6,7 +6,7 @@
       </el-header>
       <el-main>
         <div style="width:400px;">
-          <el-form ref="form" :model="form" label-width="100px">
+          <el-form ref="form" :model="form" label-width="150px">
             <el-form-item label="旧密码">
               <el-input v-model="form.oldPassword" type="password" />
             </el-form-item>
