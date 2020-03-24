@@ -29,3 +29,15 @@ export function logout() {
     method: 'get'
   })
 }
+
+export function restPassword(data) {
+  const param = new URLSearchParams()
+  param.append('new', data.newPassword)
+  param.append('old', data.oldPassword)
+  return request({
+    url: 'auth/rest/student',
+    method: 'put',
+    data: param,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+  })
+}
