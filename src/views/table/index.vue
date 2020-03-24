@@ -8,12 +8,12 @@
       fit
       highlight-current-row
     >
-      <el-table-column align="center" label="课程编号" width="95">
+      <el-table-column align="center" label="课程编号" width="100">
         <template slot-scope="scope">
           {{ scope.row.courseId }}
         </template>
       </el-table-column>
-      <el-table-column label="课程" width="220" align="center">
+      <el-table-column label="课程" width="400" align="center">
         <template slot-scope="scope">
           <p>{{ scope.row.courseName }}</p>
         </template>
@@ -23,14 +23,6 @@
           <el-button v-model="direction" type="primary" @click="evauationCourse(scope.row.courseId, scope.row.termId)">评价</el-button>
         </template>
       </el-table-column>
-      <!-- department -->
-      <!--
-      <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index }}
-        </template>
-      </el-table-column>
-       -->
     </el-table>
 
     <el-drawer :with-header="false" :visible.sync="drawer" :direction="direction" :before-close="handleClose">
